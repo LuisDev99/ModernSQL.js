@@ -1,0 +1,46 @@
+import Tokens from './../utilities/tokens.js';
+
+
+export const LEX_REGEX = {
+    DIGIT: { value: "DIGIT", pattern: /[0-9]/, token: null },
+    LETTER: { value: "LETTER", pattern: /[a-zA-Z]/, token: null },
+    IDENTIFIER: { value: "IDENTIFIER", pattern: /({LETTER}|"_")({LETTER}|{DIGIT})*/, token: Tokens.Identifier },
+    COMMENT: { value: "COMMENT", pattern: /\/\*.+?\*\/|\/\/.*(?=[\n\r])/, token: null },
+    WHITESPACE: { value: "WHITESPACE", pattern: /\t\r\f" "/, token: null },
+    INT_LITERAL: { value: "INT_LITERAL", pattern: /{DIGIT}+/, token: Tokens.Int_Literal },
+    FLOAT_LITERAL: { value: "FLOAT_LITERAL", pattern: /{DIGIT}+.{DIGIT}+/, token: Tokens.Float_Literal },
+    STRING_LITERAL: { value: "STRING_LITERAL", pattern: /["]({LETTER}|{DIGIT}|" "|[%=@,-=()_])*["]/, token: Tokens.String_Literal },
+    DATE_LITERAL: { value: "DATE_LITERAL", pattern: /{DIGIT}{DIGIT}"\/"{DIGIT}{DIGIT}"\/"{DIGIT}{DIGIT}{DIGIT}{DIGIT}/, token: Tokens.Date_Literal },
+};
+
+export const LEX_KEYWORDS = {
+    SELECT: { value: "select", token: Tokens.Select },
+    CREATE: { value: "create", token: Tokens.Create },
+    INSERT: { value: "insert", token: Tokens.Insert },
+    UPDATE: { value: "update", token: Tokens.Update },
+    DELETE: { value: "delete", token: Tokens.Delete },
+    WHERE: { value: "where", token: Tokens.Where },
+    USING: { value: "using", token: Tokens.Using },
+    ON: { value: "on", token: Tokens.On },
+    OPEN_PAR: { value: "(", token: Tokens.Open_Par },
+    CLOSE_PAR: { value: ")", token: Tokens.Close_Par },
+    OPEN_BRACE: { value: "{", token: Tokens.Open_Brace },
+    CLOSE_BRACE: { value: "}", token: Tokens.Close_Brace },
+    TRUE: { value: "true", token: Tokens.Bool_Literal },
+    FALSE: { value: "false", token: Tokens.Bool_Literal },
+    SPREAD_OPERATOR: { value: "...", token: Tokens.Spread_Operator },
+    DOT_OPERATOR: { value: ".", token: Tokens.Dot_Operator },
+    LOGICAL_EQUAL_OPERATOR: { value: "==", token: Tokens.Logical_Equal_Operator },
+    LOGICAL_NOTEQUAL_OPERATOR: { value: "!=", token: Tokens.Logical_NotEqual_Operator },
+    ASSIGN_OPERATOR: { value: "=", token: Tokens.Assign_Operator },
+    LOGICAL_NOT_OPERATOR: { value: "!", token: Tokens.Logical_Not_Operator },
+    NOT: { value: "not", token: Tokens.Logical_Not_Operator },
+    LOGICAL_OR_OPERATOR: { value: "||", token: Tokens.Logical_Or_Operator },
+    OR: { value: "or", token: Tokens.Logical_Or_Operator },
+    LOGICAL_AND_OPERATOR: { value: "&&", token: Tokens.Logical_And_Operator },
+    AND: { value: "and", token: Tokens.Logical_And_Operator },
+    LOGICAL_GREATERTHAN_OPERATOR: { value: ">", token: Tokens.Logical_GreaterThan_Operator },
+    LOGICAL_LESSTHAN_OPERATOR: { value: "<", token: Tokens.Logical_LessThan_Operator },
+    LOGICAL_GREATEREQUAL_OPERATOR: { value: ">=", token: Tokens.Logical_GreaterEqual_Operator },
+    LOGICAL_LESSEQUAL_OPERATOR: { value: "<=", token: Tokens.Logical_LessEqual_Operator },
+};
